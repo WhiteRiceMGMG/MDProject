@@ -20,7 +20,7 @@ void calculation_force(Atom *atom, Parameter *parameter) {
     u4 i                    = 0; 
     u4 j                    = 0;
     u1 dimension            = 0;
-    f8 rij[THREE_DIMENSION] = 0;
+    f8 rij[THREE_DIMENSION] = {0};
     f8 r2                   = 0;
     f8 r6                   = 0;
     f8 r12                  = 0;
