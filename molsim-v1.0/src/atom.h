@@ -9,3 +9,22 @@
  *  Note         : 
  *  History      : 2025/06/07 - ファイル作成
  *****************************************************************/
+#include <stdio.h>
+#include "sysdef.h"
+#include "parameter.h"
+
+#ifndef ATOM_H
+#define ATOM_H
+
+typedef struct Atom {
+    u4 atomId;
+    f8 atomPosition[3];
+    f8 atomVelocity[3];
+    f8 atomForce[3];
+};
+
+void initialize_atom(Atom *atom, Parameter *parameter);
+
+
+
+#endif
