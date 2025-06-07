@@ -9,3 +9,15 @@
  *  Note         : 
  *  History      : 2025/06/07 - ファイル作成
  *****************************************************************/
+#ifndef SYSMSG_H
+#define SYSMSG_H
+
+void initialize_log(void);
+
+void simulation_log(void);
+
+void end_log(void);
+
+void error_log(void);
+
+#endif
