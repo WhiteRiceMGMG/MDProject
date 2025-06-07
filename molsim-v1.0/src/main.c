@@ -19,15 +19,18 @@
 
 int main(void) {
     u4 simstep = 0;
-    printf("刻み幅入力:");
+    printf("刻み幅入力　　:");
     usleep(300000);
     printf("0.01(自動設定)\n");
-    printf("質量入力:\n");
+    usleep(100000);
+    printf("質量入力　　　:");
     usleep(300000);
     printf("1(自動設定)\n");
+    usleep(100000);
     printf("カットオフ入力:");
     usleep(300000);
     printf("2.5(自動設定)\n");
+    usleep(100000);
     printf("ステップ数入力:");
     scanf("%ld", &simstep);
     usleep(1);
