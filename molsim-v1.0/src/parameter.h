@@ -22,7 +22,7 @@ typedef struct {
     f8 epsilonVal;
     f8 sigmaVal;
     f8 atomMass;
-    f8 cutoffCoefficient
+    f8 cutoffCoefficient;
 } Parameter;
 
 
