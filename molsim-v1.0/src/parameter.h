@@ -11,17 +11,19 @@
  *****************************************************************/
 #include <stdio.h>
 #include "sysdef.h"
- #ifndef PARAMETER_H
+
+#ifndef PARAMETER_H
 #define PARAMETER_H
 
-typedef struct Parameter {
+typedef struct {
     u4 atomNum;
     u4 simulationStep;
     f8 timeStep;
     f8 epsilonVal;
     f8 sigmaVal;
     f8 atomMass;
-};
+    f8 cutoffCoefficient
+} Parameter;
 
 
 #endif

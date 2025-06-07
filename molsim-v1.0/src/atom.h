@@ -16,12 +16,12 @@
 #ifndef ATOM_H
 #define ATOM_H
 
-typedef struct Atom {
+typedef struct {
     u4 atomId;
     f8 atomPosition[3];
     f8 atomVelocity[3];
     f8 atomForce[3];
-};
+} Atom;
 
 void initialize_atom(Atom *atom, Parameter *parameter);
 

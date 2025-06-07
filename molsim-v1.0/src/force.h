@@ -9,3 +9,14 @@
  *  Note         : 
  *  History      : 2025/06/07 - ファイル作成
  *****************************************************************/
+#ifndef FORCE_H
+#define FORCE_H
+
+#include <stdio.h>
+#include "sysdef.h"
+#include "parameter.h"
+#include "atom.h"
+
+void calculation_force(Atom *atom, Parameter *parameter);
+
+#endif
