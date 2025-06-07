@@ -2,7 +2,7 @@
 gccがいります．
 
 
-<pre> bash git clone https://github.com/WhiteRiceMGMG/MDProject.git
+<pre>bash git clone https://github.com/WhiteRiceMGMG/MDProject.git
 cd MDProject/molsim-v1.0
 make 
 ./main </pre>
