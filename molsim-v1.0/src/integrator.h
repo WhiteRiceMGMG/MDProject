@@ -12,4 +12,13 @@
 #ifndef INTEGRATOR_H
 #define INTEGRATOR_H
 
+#include <stdio.h>
+#include "parameter.h"
+#include "sysdef.h"
+#include "atom.h"
+#include "force.h"
+
+void velocity_verlet(Atom *atom, Parameter *parameter);
+
+
 #endif
