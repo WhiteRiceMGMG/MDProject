@@ -1,19 +1,8 @@
-# 使い方 (Usage)
-
 使い方(多分)　そのままコピペしてどうぞ
 gccがいります．
 
-git clone https://github.com/WhiteRiceMGMG/MDProject.git
 
-cd MDProject/molsim-v1.0
-
-make
-
-./main
-
-
-<pre> 
-bash git clone https://github.com/WhiteRiceMGMG/MDProject.git
+<pre> bash git clone https://github.com/WhiteRiceMGMG/MDProject.git
 cd MDProject/molsim-v1.0
 make 
 ./main </pre>
@@ -22,7 +11,7 @@ make
 
 
 
-##プロトタイプ##
+プロトタイプ
 LJポテンシャルとVelocity Verlet法のみ再現
 セルはない
 原子は2つだけ初期配置で置けるだけ
