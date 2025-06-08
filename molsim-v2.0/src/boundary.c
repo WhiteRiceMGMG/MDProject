@@ -13,4 +13,7 @@
 #include <math.h>
 #include "boundary.h"
 
-
+void apply_period(Atom *atom, Parameter *parameter) {
+    //rijElementがcellSizeの範囲外に出た時，境界条件適応する．
+    if 
+}

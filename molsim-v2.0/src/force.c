@@ -26,6 +26,7 @@ void calculation_force(Atom *atom, Parameter *parameter) {
     f8 r12                  = 0;
     f8 fij                  = 0;
     f8 fMeg                 = 0;
+    f8 cellSize             = 0;
     u1 tempDimension        = THREE_DIMENSION;
     f8 epsilon              = parameter -> epsilonVal;
     f8 sigma                = parameter -> sigmaVal;
@@ -45,7 +46,8 @@ void calculation_force(Atom *atom, Parameter *parameter) {
             for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
                 rij[dimension] = atom[j].atomPosition[dimension] 
                                    - atom[i].atomPosition[dimension];
-                rij[dimension] = apply_period(atom,parameter,rij + dimension,THREE_DIMENSION);                   
+                cellSize = parameter -> cellSize[dimension];
+                rij[dimension] = apply_period(atom,parameter,&rij[dimension],cellSize);                   
                 r2 += rij[dimension] * rij[dimension];
             }
             if(r2 < cutoff2) {
