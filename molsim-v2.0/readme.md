@@ -6,7 +6,7 @@ gccを用いてビルドし，簡単に実行できます．
 
 ```bash
 git clone https://github.com/WhiteRiceMGMG/MDProject.git
-cd MDProject/molsim-v1.0
+cd MDProject/molsim-v2.0
 make
 ./main
 ```
