@@ -25,16 +25,13 @@ f8 apply_period(f8 position, Parameter *parameter, f8 cellMax) {
 }
 
 f8 calculation_minimam(f8 rij, f8 cellMax) {
-
-    if(rij < 0.5 * cellMax) {
+    if(rij > 0.5 * cellMax) {
         rij -= cellMax;
     } else if(rij < -0.5 * cellMax) {
         rij += cellMax;
     } else {
         ;
     }
-    
-
     return rij;
 }
 

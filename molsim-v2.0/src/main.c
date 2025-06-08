@@ -49,8 +49,8 @@ int main(void) {
     Atom *atoms = (Atom *)malloc(sizeof(Atom) * parameter.atomNum);
     initialize_atom(atoms, &parameter);
     atoms[0].atomPosition[0] = 0.0;
-    atoms[1].atomPosition[0] = 9.9;
-    atoms[2].atomPosition[0] = 0.001;
+    atoms[1].atomPosition[0] = 9.0;
+    atoms[2].atomPosition[0] = 5.0;
 
 
     calculation_force(atoms, &parameter);
