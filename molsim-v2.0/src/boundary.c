@@ -9,6 +9,8 @@
  *  Note         : 
  *  History      : 2025/06/07 - ファイル作成
  *****************************************************************/
-
+#include <stdio.h>
+#include <math.h>
+#include "boundary.h"
 
 
