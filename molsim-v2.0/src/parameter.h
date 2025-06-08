@@ -23,6 +23,7 @@ typedef struct {
     f8 sigmaVal;
     f8 atomMass;
     f8 cutoffCoefficient;
+    f8 cellSize[3];
 } Parameter;
 
 

@@ -17,10 +17,15 @@ void velocity_verlet(Atom *atom, Parameter *parameter) {
     u4 i            = 0;
     u4 dimension    = 0;
     f8 acceleration = 0;
+    f8 cellSize[3]  = {0};
     u4 atomNum      = parameter -> atomNum;
     f8 mass         = parameter -> atomMass;
     f8 timeStep     = parameter -> timeStep;
-    f8 halfTimeStep = timeStep * 0.5;
+    f8 halfTimeStep = timeStep * 0.5; 
+
+    for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
+        cellSize[dimension] = parameter->cellSize[dimension];
+    }
 
     for(i = 0; i < atomNum; i++) {
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {

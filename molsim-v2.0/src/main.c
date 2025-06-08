@@ -36,20 +36,22 @@ int main(void) {
     usleep(1);
     printf("RUN SIMULATIOM\n");
     Parameter parameter = {
-        .atomNum = 2,
+        .atomNum = 3,
         .simulationStep = 100,
         .timeStep = 0.01,
         .epsilonVal = 1.0,
         .sigmaVal = 1.0,
         .atomMass = 1.0,
-        .cutoffCoefficient = 2.5
+        .cutoffCoefficient = 2.5,
+        .cellSize = {100, 100, 100}
     };
 
     Atom *atoms = (Atom *)malloc(sizeof(Atom) * parameter.atomNum);
     initialize_atom(atoms, &parameter);
-
     atoms[0].atomPosition[0] = 0.0;
     atoms[1].atomPosition[0] = 1.1;
+    atoms[2].atomPosition[0] = 2;
+
 
     calculation_force(atoms, &parameter);
 
