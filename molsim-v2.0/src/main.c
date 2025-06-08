@@ -43,14 +43,14 @@ int main(void) {
         .sigmaVal = 1.0,
         .atomMass = 1.0,
         .cutoffCoefficient = 2.5,
-        .cellSize = {100, 100, 100}
+        .cellSize = {10, 10, 10}
     };
 
     Atom *atoms = (Atom *)malloc(sizeof(Atom) * parameter.atomNum);
     initialize_atom(atoms, &parameter);
     atoms[0].atomPosition[0] = 0.0;
-    atoms[1].atomPosition[0] = 1.1;
-    atoms[2].atomPosition[0] = 2;
+    atoms[1].atomPosition[0] = 9.9;
+    atoms[2].atomPosition[0] = 0.001;
 
 
     calculation_force(atoms, &parameter);

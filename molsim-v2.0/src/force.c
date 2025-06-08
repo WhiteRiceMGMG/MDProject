@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "force.h"
+#include "boundary.h"
 
 #define THREE_DIMENSION 3
 
@@ -27,7 +28,6 @@ void calculation_force(Atom *atom, Parameter *parameter) {
     f8 fij                  = 0;
     f8 fMeg                 = 0;
     f8 cellSize             = 0;
-    u1 tempDimension        = THREE_DIMENSION;
     f8 epsilon              = parameter -> epsilonVal;
     f8 sigma                = parameter -> sigmaVal;
     f8 cutoff               = parameter -> cutoffCoefficient * sigma;
@@ -47,7 +47,7 @@ void calculation_force(Atom *atom, Parameter *parameter) {
                 rij[dimension] = atom[j].atomPosition[dimension] 
                                    - atom[i].atomPosition[dimension];
                 cellSize = parameter -> cellSize[dimension];
-                rij[dimension] = apply_period(atom,parameter,&rij[dimension],cellSize);                   
+                rij[dimension] = calculation_minimam(rij[dimension],cellSize) ;               
                 r2 += rij[dimension] * rij[dimension];
             }
             if(r2 < cutoff2) {

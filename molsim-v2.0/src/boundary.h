@@ -20,7 +20,7 @@
 
 f8 apply_period(f8 position, Parameter *parameter, f8 cellMax);
 
-void calculation_minimau(Atom *atom, Parameter *parameter);
+f8 calculation_minimam(f8 rij, f8 cellMax);
 
 #endif
 

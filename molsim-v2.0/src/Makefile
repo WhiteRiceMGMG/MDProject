@@ -3,11 +3,11 @@ CC = gcc
 CFLAGS = -Wall -O2 -std=c99
 
 # ソースファイルとオブジェクトファイル
-SRCS = main.c atom.c force.c integrator.c
+SRCS = main.c atom.c force.c integrator.c boundary.c
 OBJS = $(SRCS:.c=.o)
 
 # ヘッダーファイル
-HEADERS = atom.h force.h integrator.h parameter.h sysdef.h
+HEADERS = atom.h force.h integrator.h parameter.h sysdef.h boundary.h
 
 # 出力ファイル名
 TARGET = main

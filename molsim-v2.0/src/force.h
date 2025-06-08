@@ -16,6 +16,7 @@
 #include "sysdef.h"
 #include "parameter.h"
 #include "atom.h"
+#include "boundary.h"
 
 void calculation_force(Atom *atom, Parameter *parameter);
 

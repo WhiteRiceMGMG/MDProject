@@ -37,8 +37,13 @@ void velocity_verlet(Atom *atom, Parameter *parameter) {
     for(i = 0; i < atomNum; i++) {
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
             atom[i].atomPosition[dimension] += timeStep * atom[i].atomVelocity[dimension];
+            //↓ポインタ渡ししたかったけど，iとdimensionも渡すのがめんどいのと，多分渡す値自体もf8で軽いからこうした．
+            //引数にparameter構造体を指定しているが，多分ここは削れると思う．
+            atom[i].atomPosition[dimension] = apply_period(atom[i].atomPosition[dimension], parameter,cellSize[dimension]); 
         }
     }
+
+
 
     calculation_force(atom, parameter);
 
