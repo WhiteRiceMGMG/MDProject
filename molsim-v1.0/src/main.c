@@ -8,6 +8,7 @@
  *  License      : MIT License
  *  Note         : 
  *  History      : 2025/06/07 - ファイル作成
+ *  ver1.0終了
  *****************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
