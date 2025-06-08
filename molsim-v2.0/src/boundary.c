@@ -7,13 +7,20 @@
  *  SBC          : Raspberry Pi Zero 2 W
  *  License      : MIT License
  *  Note         : 
- *  History      : 2025/06/07 - ファイル作成
+ *  History      : 2025/06/08 - ファイル作成
  *****************************************************************/
 #include <stdio.h>
 #include <math.h>
 #include "boundary.h"
 
-void apply_period(Atom *atom, Parameter *parameter) {
-    //rijElementがcellSizeの範囲外に出た時，境界条件適応する．
-    if 
+f8 apply_period(f8 position, Parameter *parameter, f8 cellMax) {
+    while (position >= cellMax) {
+        position -= cellMax;
+    }
+    while (position < 0) {
+        position += cellMax;
+    }
+    return position;
 }
+
+
