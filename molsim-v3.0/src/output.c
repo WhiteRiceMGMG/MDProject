@@ -6,7 +6,21 @@
  *  Compiler     : arm-none-eabi-gcc
  *  SBC          : Raspberry Pi Zero 2 W (32bit)
  *  License      : MIT License
- *  Note         : 
- *  History      : 2025/06/07 - ファイル作成
- *  最終編集 2025/6/8
+ *  Note         : 現在のステップ　atom id atom position
+ *  History      : 2025/06/10 - ファイル作成
+ *                 最終編集 2025/6/10
  *****************************************************************/
+
+ #include <stdio.h>
+
+void write_file(Atom *atom, Parameter *parameter) {
+
+
+
+    int i = 100;
+    FILE *file;
+    file = fopen("test.txt", "a+");
+    fprintf(file, "%d", i);
+    fclose(file);
+    return 0;
+}
