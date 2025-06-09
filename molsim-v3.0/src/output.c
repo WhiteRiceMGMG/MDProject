@@ -7,20 +7,24 @@
  *  SBC          : Raspberry Pi Zero 2 W (32bit)
  *  License      : MIT License
  *  Note         : 現在のステップ　atom id atom position
+ *                 
  *  History      : 2025/06/10 - ファイル作成
  *                 最終編集 2025/6/10
  *****************************************************************/
 
  #include <stdio.h>
 
-void write_file(Atom *atom, Parameter *parameter) {
+void write_file(Atom *atom, Parameter *parameter, u4 step) {
 
 
 
     int i = 100;
     FILE *file;
     file = fopen("test.txt", "a+");
-    fprintf(file, "%d", i);
+    fprintf(file, "step:%d Atom%d: pos:%d", i);
     fclose(file);
     return 0;
+
+
+
 }

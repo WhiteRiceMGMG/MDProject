@@ -47,23 +47,30 @@ int main(void) {
         .cellSize = {10, 10, 10}
     };
 
-    Atom *atoms = (Atom *)malloc(sizeof(Atom) * parameter.atomNum);
-    initialize_atom(atoms, &parameter);
-    atoms[0].atomPosition[0] = 0.0;
-    atoms[1].atomPosition[0] = 9.0;
-    atoms[2].atomPosition[0] = 5.0;
+    Atom *atom = (Atom *)malloc(sizeof(Atom) * parameter.atomNum);
+    initialize_atom(atom, &parameter);
+    atom[0].atomPosition[0] = 0.0;
+    atom[1].atomPosition[0] = 9.0;
+    atom[2].atomPosition[0] = 5.0;
 
 
-    calculation_force(atoms, &parameter);
-
+    calculation_force(atom, &parameter);
+/*
     for (u4 step = 0; step < simstep; step++) {
         velocity_verlet(atoms, &parameter);
         printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f\n",
                step, atoms[0].atomPosition[0], atoms[1].atomPosition[0]);
         usleep(10000);
     }
+*/
+    for(u4 step = 0; step < simstep; step++) {
+        velocity_verlet(atom, &parameter);
+        //for(u4 atomId = 0; atomId < atom->atomId; atomId++) {
+        //↑これはoutputで書くべきかも
+        }
+    }
 
-    free(atoms);
+    free(atom);
     return 0;
 }
 
