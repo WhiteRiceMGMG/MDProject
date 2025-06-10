@@ -67,11 +67,12 @@ int main(void) {
         velocity_verlet(atom, &parameter);
         //for(u4 atomId = 0; atomId < atom->atomId; atomId++) {
         //↑これはoutputで書くべきかも
-        }
     }
+  
 
     free(atom);
     return 0;
+
 }
 
 

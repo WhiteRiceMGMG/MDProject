@@ -10,3 +10,14 @@
  *  History      : 2025/06/07 - ファイル作成
  *  最終編集 2025/6/8
  *****************************************************************/
+#ifndef OUTPUT_H
+#define OUTPUT_H
+#include <stdio.h>
+#include "sysdef.h"
+#include "atom.h"
+#include "parameter.h"
+
+void write_file(Atom *atom, Parameter *parameter, u4 step);
+
+
+#endif
