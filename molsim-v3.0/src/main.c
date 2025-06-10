@@ -19,6 +19,39 @@
 #include "integrator.h"
 
 int main(void) {
+    Parameter *parameter = {
+        parameter->atomNum           = 3,
+        parameter->simulationStep    = 100,
+        parameter->timeStep          = 0.01,
+        parameter->epsilonVal        = 1.0,
+        parameter->sigmaVal          = 1.0,
+        parameter->atomMass          = 1.0,
+        parameter->cutoffCoefficient = 2.5,
+        parameter->cellSize[0]       = 10;
+        parameter->cellSize[1]       = 10;
+        parameter->cellSize[2]       = 10;
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     u4 simstep = 0;
     printf("刻み幅入力　　:");
     usleep(300000);
@@ -36,19 +69,9 @@ int main(void) {
     scanf("%ld", &simstep);
     usleep(1);
     printf("RUN SIMULATIOM\n");
-    Parameter parameter = {
-        .atomNum = 3,
-        .simulationStep = 100,
-        .timeStep = 0.01,
-        .epsilonVal = 1.0,
-        .sigmaVal = 1.0,
-        .atomMass = 1.0,
-        .cutoffCoefficient = 2.5,
-        .cellSize = {10, 10, 10}
-    };
 
     Atom *atom = (Atom *)malloc(sizeof(Atom) * parameter.atomNum);
-    initialize_atom(atom, &parameter);
+    initialize_atom(atom, parameter);
     atom[0].atomPosition[0] = 0.0;
     atom[1].atomPosition[0] = 9.0;
     atom[2].atomPosition[0] = 5.0;
