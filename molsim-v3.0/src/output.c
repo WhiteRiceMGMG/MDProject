@@ -13,6 +13,7 @@
  *****************************************************************/
 
  #include <stdio.h>
+ #include "output.h"
 
 void write_file(Atom *atom, Parameter *parameter, u4 step) {
     
@@ -22,7 +23,7 @@ void write_file(Atom *atom, Parameter *parameter, u4 step) {
     FILE *file;
     file = fopen("test.txt", "a+");
     fprintf(file, "step:%d ", step);
-    for(i = 0; i < atom->atomNum;i++) {
+    for(i = 0; i < parameter->atomNum;i++) {
         for(u4 dimension = 0; dimension < 3; dimension++) {
             fprintf(file, "Atom %d: pos:%d", atom[i], atom[i].atomPosition[dimension]);
         }

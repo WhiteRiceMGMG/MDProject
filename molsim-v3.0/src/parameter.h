@@ -24,6 +24,8 @@ typedef struct {
     f8 atomMass;
     f8 cutoffCoefficient;
     f8 cellSize[3];
+    f8 atomInterval;
+
 } Parameter;
 
 
