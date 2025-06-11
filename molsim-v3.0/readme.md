@@ -31,6 +31,9 @@ make
 各システムパラメータの入力受付<br>
 xmgr，XMGRACE，VMDなどに対応<br>
 単位導入<br>
+並列化導入 OpenMP MPI<br>
+
+
 
 
 
