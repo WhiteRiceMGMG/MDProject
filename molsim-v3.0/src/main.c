@@ -19,6 +19,7 @@
 #include "atom.h"
 #include "force.h"
 #include "integrator.h"
+#include "output.h"
 
 int main(void) {
     Parameter *parameter = (Parameter *)malloc(sizeof(Parameter));
@@ -122,19 +123,15 @@ int main(void) {
 */
 
     calculation_force(atom, parameter);
-/*
-    for (u4 step = 0; step < simstep; step++) {
-        velocity_verlet(atoms, &parameter);
-        printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f\n",
-               step, atoms[0].atomPosition[0], atoms[1].atomPosition[0]);
-        usleep(10000);
-    }
-*/
 
     for(u4 step = 0; step < parameter->simulationStep; step++) {
         velocity_verlet(atom, parameter);
         printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f\n",
                step, atom[0].atomPosition[0], atom[1].atomPosition[0]);
+        if(step == (parameter->simulationStep / 100)) {
+            printf("◻️");
+        }
+            write_file(atom,parameter,step);
         //for(u4 atomId = 0; atomId < atom->atomId; atomId++) {
         //↑これはoutputで書くべきかも
     }

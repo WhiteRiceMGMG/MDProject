@@ -21,16 +21,21 @@ void write_file(Atom *atom, Parameter *parameter, u4 step) {
 
     int i = 100;
     FILE *file;
-    file = fopen("test.txt", "a+");
-    fprintf(file, "step:%d ", step);
-    for(i = 0; i < parameter->atomNum;i++) {
-        for(u4 dimension = 0; dimension < 3; dimension++) {
-            fprintf(file, "Atom %d: pos:%d", atom[i], atom[i].atomPosition[dimension]);
-        }
+    file = fopen("test.txt", "a");
+    if (file == NULL) {
+        perror("ファイルオープンに失敗");
+        return;
     }
-    fprintf(file, "step:%d Atom%d: pos:%d", i);
+    for(i = 0; i < parameter->atomNum;i++) {
+        fprintf(file, "atom:%lu step:%lu ", atom[i].atomId, step);
+        for(u4 dimension = 0; dimension < 3; dimension++) {
+            fprintf(file, "%f ", atom[i].atomPosition[dimension]);
+        }
+        fprintf(file, "\n");
+    }
+    fprintf(file, "--------------------------------------------------------------------------\n");
     fclose(file);
-    return 0;
+    return;
 
 
 
