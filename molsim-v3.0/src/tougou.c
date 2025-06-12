@@ -73,7 +73,7 @@ int main(void) {
     parameter->cellSize[1]       = 0;
     parameter->cellSize[2]       = 0;
     parameter->atomInterval      = 0;
-    printf("原子数 100推奨    ：");
+    printf("原子数 10推奨    ：");
     usleep(100000);
     scanf("%lu", &(parameter->atomNum));
     usleep(100000);
@@ -103,17 +103,17 @@ int main(void) {
     printf("2.5(自動設定)\n");
     usleep(100000);
     
-    printf("セルX長さ 20推奨   :");
+    printf("セルX長さ 5推奨   :");
     usleep(100000);
     scanf("%lf", &(parameter->cellSize[0]));
     usleep(100000);
 
-    printf("セルY長さ 20推奨  ：");
+    printf("セルY長さ 5推奨  ：");
     usleep(100000);
     scanf("%lf", &(parameter->cellSize[1]));
     usleep(100000);
 
-    printf("セルZ長さ 10推奨  ：");
+    printf("セルZ長さ 5推奨  ：");
     usleep(100000);
     scanf("%lf", &(parameter->cellSize[2]));
     usleep(100000);
@@ -308,23 +308,32 @@ void velocity_verlet(Atom *atom, Parameter *parameter) {
 }
 
 void write_file(Atom *atom, Parameter *parameter, u4 step) {
-    int i = 100;
+    
+
+
+    u4 i = 100;
     FILE *file;
-    file = fopen("test.txt", "a");
+    file = fopen("test.xyz", "a");
     if (file == NULL) {
         perror("ファイルオープンに失敗");
         return;
     }
+
+    fprintf(file,"%lu\n",parameter->atomNum);
+    fprintf(file, "timestep %lu  \n", step);
     for(i = 0; i < parameter->atomNum;i++) {
-        fprintf(file, "atom:%lu step:%lu ", atom[i].atomId, step);
+        //fprintf(file, "atom:%lu  ", atom[i].atomId);
+        fprintf(file,"A ");
         for(u4 dimension = 0; dimension < 3; dimension++) {
             fprintf(file, "%f ", atom[i].atomPosition[dimension]);
         }
         fprintf(file, "\n");
     }
-    fprintf(file, "--------------------------------------------------------------------------\n");
+    //fprintf(file, "--------------------------------------------------------------------------\n");
     fclose(file);
     return;
-}
 
+
+
+}
 
