@@ -19,7 +19,10 @@ void control_thermostat(Atom *atom, Parameter *parameter){
     f8 atomMass           = parameter->atomMass;
     f8 boltzmannVal       = parameter->boltzmannVal;
     f8 currentTemperature = parameter->currentTemperature;
+    u4 i                  = 0;
 
+
+    
     printf("hello,world");
 }
 
