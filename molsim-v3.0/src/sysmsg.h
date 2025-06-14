@@ -12,6 +12,13 @@
 #ifndef SYSMSG_H
 #define SYSMSG_H
 
+#include <stdio.h>
+#include <unistd.h>
+#include "parameter.h"
+
+
+void system_message(Parameter *parameter);
+
 void initialize_log(void);
 
 void simulation_log(void);

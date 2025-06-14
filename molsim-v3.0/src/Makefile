@@ -4,11 +4,11 @@ CFLAGS = -Wall -O2 -std=c99
 LDFLAGS = -lm  # 数学関数用のリンクオプション
 
 # ソースファイルとオブジェクトファイル
-SRCS = main.c atom.c force.c integrator.c boundary.c output.c
+SRCS = main.c atom.c force.c integrator.c boundary.c output.c sysmsg.c
 OBJS = $(SRCS:.c=.o)
 
 # ヘッダーファイル（依存関係リスト）
-HEADERS = atom.h force.h integrator.h parameter.h sysdef.h boundary.h output.h
+HEADERS = atom.h force.h integrator.h parameter.h sysdef.h boundary.h output.h sysmsg.h
 
 # 出力ファイル名
 TARGET = main

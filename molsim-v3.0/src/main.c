@@ -19,6 +19,7 @@
 #include "atom.h"
 #include "force.h"
 #include "integrator.h"
+#include "sysmsg.h"
 #include "output.h"
 
 int main(void) {
@@ -34,58 +35,8 @@ int main(void) {
     parameter->cellSize[1]       = 0;    /*Y方向のセルの長さ*/
     parameter->cellSize[2]       = 0;    /*Z方向のセルの長さ*/
     parameter->atomInterval      = 0;     /*初期原子間距離*/
-    printf("原子数 100推奨    ：");
-    usleep(100000);
-    scanf("%lu", &(parameter->atomNum));
-    usleep(100000);
-
-    printf("ステップ数 100推奨：");
-    usleep(100000);
-    scanf("%lu", &(parameter->simulationStep));
-    usleep(100000);    
-
-    printf("刻み幅 0.1推奨    ：");
-    usleep(100000);
-    scanf("%lf", &(parameter->timeStep));
-    usleep(100000);
-
-    printf("σ                  ：");
-    usleep(100000);
-    printf("1.0(自動設定)\n");
-    usleep(100000);
-
-    printf("ε                  ：");
-    usleep(100000);
-    printf("1.0(自動設定)\n");
-    usleep(100000);
-
-    printf("カットオフ入力     :");
-    usleep(100000);
-    printf("2.5(自動設定)\n");
-    usleep(100000);
+    system_message(parameter);
     
-    printf("セルX長さ 20推奨   :");
-    usleep(100000);
-    scanf("%lf", &(parameter->cellSize[0]));
-    usleep(100000);
-
-    printf("セルY長さ 20推奨  ：");
-    usleep(100000);
-    scanf("%lf", &(parameter->cellSize[1]));
-    usleep(100000);
-
-    printf("セルZ長さ 10推奨  ：");
-    usleep(100000);
-    scanf("%lf", &(parameter->cellSize[2]));
-    usleep(100000);
-
-    printf("初期配置間隔 1推奨 ：");
-    usleep(100000);
-    scanf("%lf", &(parameter->atomInterval));
-    usleep(1);
-
-    usleep(1);
-    printf("RUN SIMULATIOM\n");
 
     Atom *atom = (Atom *)malloc(sizeof(Atom) * parameter->atomNum);
     initialize_atom(atom, parameter);
@@ -128,7 +79,7 @@ int main(void) {
         velocity_verlet(atom, parameter);
         printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f\n",
                step, atom[0].atomPosition[0], atom[1].atomPosition[0]);
-        if(step == (parameter->simulationStep / 100)) {
+        if(step == (parameter->simulationStep / 10)) {
             printf("◻️");
         }
             write_file(atom,parameter,step);
