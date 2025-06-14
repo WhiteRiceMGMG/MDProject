@@ -21,6 +21,7 @@
 #include "integrator.h"
 #include "sysmsg.h"
 #include "output.h"
+#include "temperature.h"
 
 int main(void) {
     Parameter *parameter = (Parameter *)malloc(sizeof(Parameter));

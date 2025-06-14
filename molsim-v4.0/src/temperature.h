@@ -13,10 +13,16 @@
  *  　　　　　　　　　最終編集 2025/6/8
  * 　　　　　　　　　　
  *****************************************************************/
-#include <stdio.h>
+#ifndef TEMPERATURE_H
+#define TEMPERATURE_H
+
+ #include <stdio.h>
 #include <math.h>
 #include "sysdef.h"
 #include "parameter.h"
 #include "atom.h"
 
 void control_thermostat(Atom *atom, Parameter *parameter);
+
+
+#endif

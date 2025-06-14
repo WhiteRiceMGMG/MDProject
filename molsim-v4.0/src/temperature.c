@@ -10,3 +10,9 @@
  *  History      : 2025/06/07 - ファイル作成
  *  　　　　　　　　　最終編集 2025/6/8
  *****************************************************************/
+#include "temperature.h"
+
+void control_thermostat(Atom *atom, Parameter *parameter){
+    printf("hello,world");
+}
+
