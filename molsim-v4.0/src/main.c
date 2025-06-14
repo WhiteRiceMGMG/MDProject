@@ -24,17 +24,21 @@
 
 int main(void) {
     Parameter *parameter = (Parameter *)malloc(sizeof(Parameter));
-    parameter->atomNum           = 0;    /*原子の数*/
-    parameter->simulationStep    = 0;    /*シミュレーションステップ*/
-    parameter->timeStep          = 0;    /*1ステップあたりの時間*/
-    parameter->epsilonVal        = 1.0;  /*原子間の引力*/
-    parameter->sigmaVal          = 1.0;  /*ポテンシャルエネルギー最小位置*/
-    parameter->atomMass          = 1.0;  /*原子質量*/
-    parameter->cutoffCoefficient = 2.5;  /*カットオフ距離*/
-    parameter->cellSize[0]       = 0;    /*X方向のセルの長さ*/
-    parameter->cellSize[1]       = 0;    /*Y方向のセルの長さ*/
-    parameter->cellSize[2]       = 0;    /*Z方向のセルの長さ*/
-    parameter->atomInterval      = 0;     /*初期原子間距離*/
+    
+    parameter->atomNum            = 0;    /*原子の数*/
+    parameter->simulationStep     = 0;    /*シミュレーションステップ*/
+    parameter->timeStep           = 0;    /*1ステップあたりの時間*/
+    parameter->epsilonVal         = 1.0;  /*原子間の引力*/
+    parameter->sigmaVal           = 1.0;  /*ポテンシャルエネルギー最小位置*/
+    parameter->atomMass           = 1.0;  /*原子質量*/
+    parameter->cutoffCoefficient  = 2.5;  /*カットオフ距離*/
+    parameter->cellSize[0]        = 0;    /*X方向のセルの長さ*/
+    parameter->cellSize[1]        = 0;    /*Y方向のセルの長さ*/
+    parameter->cellSize[2]        = 0;    /*Z方向のセルの長さ*/
+    parameter->atomInterval       = 0;    /*初期原子間距離*/
+    parameter->initialTemperature = 0;    /*初期温度*/
+    parameter->currentTemperature = 0;    /*現在の温度*/
+
     system_message(parameter);
     
 
@@ -79,10 +83,13 @@ int main(void) {
         velocity_verlet(atom, parameter);
         printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f\n",
                step, atom[0].atomPosition[0], atom[1].atomPosition[0]);
-        if(step == (parameter->simulationStep / 10)) {
-            printf("◻️");
+        if (step % 50 == 0) {
+            control_thermostat(atom, parameter);
         }
-            write_file(atom,parameter,step);
+        
+           write_file(atom,parameter,step);
+
+
         //for(u4 atomId = 0; atomId < atom->atomId; atomId++) {
         //↑これはoutputで書くべきかも
     }
