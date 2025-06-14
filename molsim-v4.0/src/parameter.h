@@ -25,7 +25,8 @@ typedef struct {
     f8 cutoffCoefficient;
     f8 cellSize[3];
     f8 atomInterval;
-
+    f8 initialTemperature;
+    f8 currentTemperature;
 } Parameter;
 
 
