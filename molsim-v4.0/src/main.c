@@ -39,6 +39,7 @@ int main(void) {
     parameter->atomInterval       = 0;    /*初期原子間距離*/
     parameter->initialTemperature = 0;    /*初期温度*/
     parameter->currentTemperature = 0;    /*現在の温度*/
+    parameter->boltzmannVal        = 0;
 
     system_message(parameter);
     

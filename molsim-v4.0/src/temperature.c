@@ -14,10 +14,11 @@
 
 //現在の温度を指定されたステップごとに計算する．
 void control_thermostat(Atom *atom, Parameter *parameter){
-    u4 atomNum = parameter->atomNum;
-    f8 *atomVelocity = atom->atomVelocity;
-    f8 atomMass = parameter->atomMass;
-
+    f8 *atomVelocity      = atom->atomVelocity;    
+    u4 atomNum            = parameter->atomNum;
+    f8 atomMass           = parameter->atomMass;
+    f8 boltzmannVal       = parameter->boltzmannVal;
+    f8 currentTemperature = parameter->currentTemperature;
 
     printf("hello,world");
 }

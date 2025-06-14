@@ -27,6 +27,7 @@ typedef struct {
     f8 atomInterval;
     f8 initialTemperature;
     f8 currentTemperature;
+    f8 boltzmannVal;
 } Parameter;
 
 
