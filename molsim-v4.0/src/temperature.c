@@ -12,7 +12,13 @@
  *****************************************************************/
 #include "temperature.h"
 
+//現在の温度を指定されたステップごとに計算する．
 void control_thermostat(Atom *atom, Parameter *parameter){
+    u4 atomNum = parameter->atomNum;
+    f8 *atomVelocity = atom->atomVelocity;
+    f8 atomMass = parameter->atomMass;
+
+
     printf("hello,world");
 }
 
