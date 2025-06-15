@@ -86,7 +86,7 @@ int main(void) {
         printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f \n",
                step, atom[0].atomPosition[0], atom[1].atomPosition[0]);
         if (step % 5 == 0) {
-            control_thermostat(atom, parameter);
+            calculate_temperature(atom, parameter);
             printf("TEMPERATURE:%f\n",parameter->currentTemperature);
         }
         

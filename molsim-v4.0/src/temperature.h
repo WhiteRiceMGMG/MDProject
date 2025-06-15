@@ -22,7 +22,7 @@
 #include "parameter.h"
 #include "atom.h"
 
-void control_thermostat(Atom *atom, Parameter *parameter);
+void calculate_temperature(Atom *atom, Parameter *parameter);
 
 
 #endif
