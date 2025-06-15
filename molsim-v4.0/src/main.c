@@ -83,10 +83,11 @@ int main(void) {
 
     for(u4 step = 0; step < parameter->simulationStep; step++) {
         velocity_verlet(atom, parameter);
-        printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f\n",
+        printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f \n",
                step, atom[0].atomPosition[0], atom[1].atomPosition[0]);
-        if (step % 50 == 0) {
+        if (step % 5 == 0) {
             control_thermostat(atom, parameter);
+            printf("TEMPERATURE:%f\n",parameter->currentTemperature);
         }
         
            write_file(atom,parameter,step);
