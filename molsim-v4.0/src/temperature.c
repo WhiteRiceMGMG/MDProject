@@ -30,7 +30,7 @@ void control_thermostat(Atom *atom, Parameter *parameter){
         }
     }
     parameter->currentTemperature = temporaryTemperature / 3 * atomNum * boltzmannVal;
-
+    
 
     printf("hello,world");
 }
