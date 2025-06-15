@@ -12,17 +12,27 @@
  *****************************************************************/
 #include "temperature.h"
 
-//現在の温度を指定されたステップごとに計算する．
+#define THREE_DIMENSION 3
+
 void control_thermostat(Atom *atom, Parameter *parameter){
-    f8 *atomVelocity      = atom->atomVelocity;    
-    u4 atomNum            = parameter->atomNum;
-    f8 atomMass           = parameter->atomMass;
-    f8 boltzmannVal       = parameter->boltzmannVal;
-    f8 currentTemperature = parameter->currentTemperature;
-    u4 i                  = 0;
+    f8 *atomVelocity        = atom->atomVelocity;    
+    u4 atomNum              = parameter->atomNum;
+    f8 atomMass             = parameter->atomMass;
+    f8 boltzmannVal         = parameter->boltzmannVal;
+    f8 currentTemperature   = parameter->currentTemperature;
+    u4 dimension            = 0;
+    f8 temporaryTemperature = 0;
+    u4 i                    = 0;
 
 
-    
+    for (i = 0; i < atomNum; i++) {
+        for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
+            temporaryTemperature += atomMass * atomVelocity[dimension] * atomVelocity[dimension]; 
+        }
+    }
+    currentTemperature = temporaryTemperature / 3 * atomNum * boltzmannVal;
+
+
     printf("hello,world");
 }
 
