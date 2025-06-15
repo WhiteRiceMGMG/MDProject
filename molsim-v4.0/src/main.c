@@ -26,19 +26,19 @@
 int main(void) {
     Parameter *parameter = (Parameter *)malloc(sizeof(Parameter));
     
-    parameter->atomNum            = 0;    /*原子の数*/
-    parameter->simulationStep     = 0;    /*シミュレーションステップ*/
-    parameter->timeStep           = 0;    /*1ステップあたりの時間*/
+    parameter->atomNum            = 100;    /*原子の数*/
+    parameter->simulationStep     = 100;    /*シミュレーションステップ*/
+    parameter->timeStep           = 0.1;    /*1ステップあたりの時間*/
     parameter->epsilonVal         = 1.0;  /*原子間の引力*/
     parameter->sigmaVal           = 1.0;  /*ポテンシャルエネルギー最小位置*/
     parameter->atomMass           = 1.0;  /*原子質量*/
     parameter->cutoffCoefficient  = 2.5;  /*カットオフ距離*/
-    parameter->cellSize[0]        = 0;    /*X方向のセルの長さ*/
-    parameter->cellSize[1]        = 0;    /*Y方向のセルの長さ*/
-    parameter->cellSize[2]        = 0;    /*Z方向のセルの長さ*/
-    parameter->atomInterval       = 0;    /*初期原子間距離*/
-    parameter->initialTemperature = 0;    /*初期温度*/
-    parameter->currentTemperature = 0;    /*現在の温度*/
+    parameter->cellSize[0]        = 20;    /*X方向のセルの長さ*/
+    parameter->cellSize[1]        = 20;    /*Y方向のセルの長さ*/
+    parameter->cellSize[2]        = 20;    /*Z方向のセルの長さ*/
+    parameter->atomInterval       = 1;    /*初期原子間距離*/
+    parameter->initialTemperature = 300;    /*初期温度*/
+    parameter->currentTemperature = 1;    /*現在の温度*/
     parameter->boltzmannVal       = 1;    /*ボルツマン定数*/
 
     system_message(parameter);
