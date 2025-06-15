@@ -19,7 +19,6 @@ void control_thermostat(Atom *atom, Parameter *parameter){
     u4 atomNum              = parameter->atomNum;
     f8 atomMass             = parameter->atomMass;
     f8 boltzmannVal         = parameter->boltzmannVal;
-    f8 currentTemperature   = parameter->currentTemperature;
     u4 dimension            = 0;
     f8 temporaryTemperature = 0;
     u4 i                    = 0;
@@ -30,7 +29,7 @@ void control_thermostat(Atom *atom, Parameter *parameter){
             temporaryTemperature += atomMass * atomVelocity[dimension] * atomVelocity[dimension]; 
         }
     }
-    currentTemperature = temporaryTemperature / 3 * atomNum * boltzmannVal;
+    parameter->currentTemperature = temporaryTemperature / 3 * atomNum * boltzmannVal;
 
 
     printf("hello,world");
