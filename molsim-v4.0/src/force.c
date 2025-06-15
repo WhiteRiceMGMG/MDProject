@@ -50,6 +50,10 @@ void calculation_force(Atom *atom, Parameter *parameter) {
                 rij[dimension] = calculation_minimam(rij[dimension],cellSize) ;               
                 r2 += rij[dimension] * rij[dimension];
             }
+            if (r2 < 1e-12) {
+                printf("[警告] r^2 = %.10f between atom %lu and atom %lu\n", r2, i, j);
+                continue;
+            }
             if(r2 < cutoff2) {
                 r6 = (sigma * sigma) / r2;
                 r6 = r6 * r6 * r6;
