@@ -33,10 +33,11 @@ void calculate_temperature(Atom *atom, Parameter *parameter){
     parameter->currentTemperature = temporaryTemperature * atomMass  / (3 * atomNum * boltzmannVal);
 
 }
-
+/*
 void control_temperature(Atom *atom, Parameter *parameter){
 
 }
 
     temperatureCoefficient = initialTemperature / currentTemperature;
     temperatureCoefficient *= temperatureCoefficient;
+*/
