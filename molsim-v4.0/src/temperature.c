@@ -26,18 +26,17 @@ void calculate_temperature(Atom *atom, Parameter *parameter){
     u4 i                      = 0;
     f8 temperatureCoefficient = 0;
 
-
-    temperatureCoefficient = initialTemperature / currentTemperature;
-    temperatureCoefficient *= temperatureCoefficient;
     for (i = 0; i < atomNum; i++) {
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
-            temporaryTemperature += atomMass 
-                                    * atomVelocity[i * THREE_DIMENSION + dimension] 
-                                    * atomVelocity[i * THREE_DIMENSION + dimension]
-                                    * temperatureCoefficient; 
-        }
+            temporaryTemperature += atomVelocity[i * THREE_DIMENSION + dimension] * atomVelocity[i * THREE_DIMENSION + dimension];
     }
-    parameter->currentTemperature = temporaryTemperature  / (3 * atomNum * boltzmannVal);
+    parameter->currentTemperature = temporaryTemperature * atomMass  / (3 * atomNum * boltzmannVal);
 
 }
 
+void control_temperature(Atom *atom, Parameter *parameter){
+
+}
+
+    temperatureCoefficient = initialTemperature / currentTemperature;
+    temperatureCoefficient *= temperatureCoefficient;

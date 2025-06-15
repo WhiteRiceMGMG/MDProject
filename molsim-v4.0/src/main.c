@@ -23,6 +23,13 @@
 #include "output.h"
 #include "temperature.h"
 
+// 標準正規分布を生成する関数（Box-Muller法）
+double rand_normal(double mean, double stddev) {
+    double u1 = ((double)rand() + 1.0) / ((double)RAND_MAX + 2.0);
+    double u2 = ((double)rand() + 1.0) / ((double)RAND_MAX + 2.0);
+    return mean + stddev * sqrt(-2.0 * log(u1)) * cos(2.0 * M_PI * u2);
+}
+
 int main(void) {
     Parameter *parameter = (Parameter *)malloc(sizeof(Parameter));
     
@@ -46,7 +53,32 @@ int main(void) {
 
     Atom *atom = (Atom *)malloc(sizeof(Atom) * parameter->atomNum);
     initialize_atom(atom, parameter);
+//-----------------------------------------------------------
+    double kT_over_m = parameter->boltzmannVal * parameter->initialTemperature / parameter->atomMass;
+    double stddev = sqrt(kT_over_m); // 標準偏差 √(kT/m)
 
+    for (u4 i = 0; i < parameter->atomNum; i++) {
+        for (u4 d = 0; d < 3; d++) {
+            atom[i].atomVelocity[d] = rand_normal(0.0, stddev); // 平均0, 分散kT/m
+        }
+    }
+
+    // 運動量補正（全体の速度を0にする：モメンタムゼロ初期化）
+    double vcm[3] = {0.0, 0.0, 0.0};
+    for (u4 i = 0; i < parameter->atomNum; i++) {
+        for (u4 d = 0; d < 3; d++) {
+            vcm[d] += atom[i].atomVelocity[d];
+        }
+    }
+    for (u4 d = 0; d < 3; d++) {
+        vcm[d] /= parameter->atomNum;
+    }
+    for (u4 i = 0; i < parameter->atomNum; i++) {
+        for (u4 d = 0; d < 3; d++) {
+            atom[i].atomVelocity[d] -= vcm[d]; // 系全体の移動をキャンセル
+        }
+    }    
+//-----------------------------------------------------------
     // ランダム配置（最小距離を考慮）
     double minDistance = 1.0; // 原子間の最小距離
     srand(time(NULL)); // ランダムシードを設定
