@@ -15,6 +15,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "parameter.h"
+#include <math.h>
+#include <time.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 
 void system_message(Parameter *parameter);

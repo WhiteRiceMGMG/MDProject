@@ -335,7 +335,7 @@ void system_message(Parameter *parameter){
     usleep(100000);
     //scanf("%lu", &(parameter->atomNum));
     printf("10\n");
-    parameter->atomNum = 10;
+    parameter->atomNum = 40;
     usleep(100000);
 
     printf("ステップ　　　　:");
