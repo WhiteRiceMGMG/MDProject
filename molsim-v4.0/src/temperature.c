@@ -28,7 +28,8 @@ void calculate_temperature(Atom *atom, Parameter *parameter){
 
     for (i = 0; i < atomNum; i++) {
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
-            temporaryTemperature += atomVelocity[i * THREE_DIMENSION + dimension] * atomVelocity[i * THREE_DIMENSION + dimension];
+            temporaryTemperature += atomVelocity[i * THREE_DIMENSION + dimension] 
+                                    * atomVelocity[i * THREE_DIMENSION + dimension];
         }
     }
     parameter->currentTemperature = temporaryTemperature * atomMass  / (3 * atomNum * boltzmannVal);

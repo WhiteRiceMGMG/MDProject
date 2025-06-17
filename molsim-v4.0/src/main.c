@@ -55,15 +55,14 @@ int main(void) {
     initialize_atom(atom, parameter);
 //-----------------------------------------------------------
     double kT_over_m = parameter->boltzmannVal * parameter->initialTemperature / parameter->atomMass;
-    double stddev = sqrt(kT_over_m); // 標準偏差 √(kT/m)
+    double stddev = sqrt(kT_over_m); 
 
     for (u4 i = 0; i < parameter->atomNum; i++) {
         for (u4 d = 0; d < 3; d++) {
-            atom[i].atomVelocity[d] = rand_normal(0.0, stddev); // 平均0, 分散kT/m
+            atom[i].atomVelocity[d] = rand_normal(0.0, stddev); 
         }
     }
 
-    // 運動量補正（全体の速度を0にする：モメンタムゼロ初期化）
     double vcm[3] = {0.0, 0.0, 0.0};
     for (u4 i = 0; i < parameter->atomNum; i++) {
         for (u4 d = 0; d < 3; d++) {
@@ -75,7 +74,7 @@ int main(void) {
     }
     for (u4 i = 0; i < parameter->atomNum; i++) {
         for (u4 d = 0; d < 3; d++) {
-            atom[i].atomVelocity[d] -= vcm[d]; // 系全体の移動をキャンセル
+            atom[i].atomVelocity[d] -= vcm[d]; 
         }
     }    
 //-----------------------------------------------------------
