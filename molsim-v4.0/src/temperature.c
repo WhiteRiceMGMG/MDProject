@@ -32,13 +32,14 @@ void calculate_temperature(Atom *atom, Parameter *parameter){
                                     * atomVelocity[i * THREE_DIMENSION + dimension];
         }
     }
-    parameter->currentTemperature = temporaryTemperature * atomMass  / (3 * atomNum * boltzmannVal);
+    parameter->currentTemperature 
+                = temporaryTemperature * atomMass  / (3 * atomNum * boltzmannVal);
+}
+
+void control_temperature(Atom *atom, Parameter *parameter){
+    printf("hello")
 }
 /*
-void control_temperature(Atom *atom, Parameter *parameter){
-
-}
-
     temperatureCoefficient = initialTemperature / currentTemperature;
     temperatureCoefficient *= temperatureCoefficient;
 */
