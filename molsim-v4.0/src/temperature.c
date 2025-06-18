@@ -37,7 +37,7 @@ void calculate_temperature(Atom *atom, Parameter *parameter){
 }
 
 void control_temperature(Atom *atom, Parameter *parameter){
-    printf("hello")
+    printf("hello");
 }
 /*
     temperatureCoefficient = initialTemperature / currentTemperature;
