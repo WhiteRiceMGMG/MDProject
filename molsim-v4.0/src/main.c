@@ -113,6 +113,9 @@ int main(void) {
     calculation_force(atom, parameter);
 
     for(u4 step = 0; step < parameter->simulationStep; step++) {
+        if (step == 0) {
+            control_temperature(atom, parameter);
+        }
         velocity_verlet(atom, parameter);
         //printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f \n",
         //       step, atom[0].atomPosition[0], atom[1].atomPosition[0]);
@@ -120,7 +123,7 @@ int main(void) {
         //if (step % 5 == 0) {
             calculate_temperature(atom, parameter);
             printf("Temperature:%f\n",parameter->currentTemperature);
-            control_temperature(atom, parameter);
+ //           control_temperature(atom, parameter);
         //}
         
            write_file(atom,parameter,step);
