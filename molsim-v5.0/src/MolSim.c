@@ -9,13 +9,22 @@
  *  Note         : ファイルをすべて統合した
  *  History      : 2025/06/15 - 統合版作成
  *****************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <time.h>
 #include <unistd.h>
+#include <time.h>
+#include <math.h>
+#include "parameter.h"
+#include "atom.h"
+#include "force.h"
+#include "integrator.h"
+#include "sysmsg.h"
+#include "output.h"
+#include "temperature.h"
 
-#define THREE_DIMENSION 3
+
+ #define THREE_DIMENSION 3
 
 typedef char               s1;   /* signed 1 byte (8 bit) */
 typedef short              s2;   /* signed 2 bytes (16 bit) */
@@ -37,6 +46,7 @@ typedef struct {
     f8 atomForce[3];
 } Atom;
 
+
 typedef struct {
     u4 atomNum;
     u4 simulationStep;
@@ -54,13 +64,13 @@ typedef struct {
 
 void initialize_atom(Atom *atom, Parameter *parameter);
 f8 apply_period(f8 position, Parameter *parameter, f8 cellMax);
-f8 calculation_minimam(f8 rij, f8 cellMax);
 void calculation_force(Atom *atom, Parameter *parameter);
 void velocity_verlet(Atom *atom, Parameter *parameter);
 void write_file(Atom *atom, Parameter *parameter, u4 step);
 void calculate_temperature(Atom *atom, Parameter *parameter);
-double rand_normal(double mean, double stddev);
-void system_message(Parameter *parameter);
+void control_temperature(Atom *atom, Parameter *parameter);
+f8 rand_normal(f8 mean, f8 stddev)
+f8 calculation_minimam(f8 rij, f8 cellMax);
 
 int main(void) {
     Parameter *parameter = (Parameter *)malloc(sizeof(Parameter));
@@ -68,16 +78,16 @@ int main(void) {
     parameter->atomNum            = 100;    /*原子の数*/
     parameter->simulationStep     = 100;    /*シミュレーションステップ*/
     parameter->timeStep           = 0.1;    /*1ステップあたりの時間*/
-    parameter->epsilonVal         = 1.0;    /*原子間の引力*/
-    parameter->sigmaVal           = 1.0;    /*ポテンシャルエネルギー最小位置*/
-    parameter->atomMass           = 1.0;    /*原子質量*/
-    parameter->cutoffCoefficient  = 2.5;    /*カットオフ距離*/
-    parameter->cellSize[0]        = 20;     /*X方向のセルの長さ*/
-    parameter->cellSize[1]        = 20;     /*Y方向のセルの長さ*/
-    parameter->cellSize[2]        = 20;     /*Z方向のセルの長さ*/
-    parameter->atomInterval       = 1;      /*初期原子間距離*/
+    parameter->epsilonVal         = 1.0;  /*原子間の引力*/
+    parameter->sigmaVal           = 1.0;  /*ポテンシャルエネルギー最小位置*/
+    parameter->atomMass           = 1.0;  /*原子質量*/
+    parameter->cutoffCoefficient  = 2.5;  /*カットオフ距離*/
+    parameter->cellSize[0]        = 20;    /*X方向のセルの長さ*/
+    parameter->cellSize[1]        = 20;    /*Y方向のセルの長さ*/
+    parameter->cellSize[2]        = 20;    /*Z方向のセルの長さ*/
+    parameter->atomInterval       = 1;    /*初期原子間距離*/
     parameter->initialTemperature = 300;    /*初期温度*/
-    parameter->currentTemperature = 1;      /*現在の温度*/
+    parameter->currentTemperature = 0;    /*現在の温度*/
     parameter->boltzmannVal       = 1;    /*ボルツマン定数*/
 
     system_message(parameter);
@@ -85,8 +95,9 @@ int main(void) {
 
     Atom *atom = (Atom *)malloc(sizeof(Atom) * parameter->atomNum);
     initialize_atom(atom, parameter);
+//-----------------------------------------------------------
     double kT_over_m = parameter->boltzmannVal * parameter->initialTemperature / parameter->atomMass;
-    double stddev = sqrt(kT_over_m);
+    double stddev = sqrt(kT_over_m); 
 
     for (u4 i = 0; i < parameter->atomNum; i++) {
         for (u4 d = 0; d < 3; d++) {
@@ -108,14 +119,15 @@ int main(void) {
             atom[i].atomVelocity[d] -= vcm[d]; 
         }
     }    
-
-    double minDistance = 1.0; 
-    srand(time(NULL));
+//-----------------------------------------------------------
+    // ランダム配置（最小距離を考慮）
+    double minDistance = 1.0; // 原子間の最小距離
+    srand(time(NULL)); // ランダムシードを設定
 
     for (u4 i = 0; i < parameter->atomNum; i++) {
         int valid = 0;
         while (!valid) {
-            valid = 1; 
+            valid = 1; // 配置が有効か仮定
             for (u4 dimension = 0; dimension < 3; dimension++) {
                 atom[i].atomPosition[dimension] =
                     ((double)rand() / RAND_MAX) * parameter->cellSize[dimension];
@@ -127,22 +139,37 @@ int main(void) {
                     distanceSquared += diff * diff;
                 }
                 if (sqrt(distanceSquared) < minDistance) {
-                    valid = 0; 
+                    valid = 0; // 配置をやり直す
                     break;
                 }
             }
         }
     }
 
+/*
+    atom[0].atomPosition[0] = 0.0;
+    atom[1].atomPosition[0] = 9.0;
+    atom[2].atomPosition[0] = 5.0;
+*/
 
     calculation_force(atom, parameter);
 
     for(u4 step = 0; step < parameter->simulationStep; step++) {
+        if (step == 0) {
+            calculate_temperature(atom, parameter);
+            control_temperature(atom, parameter);
+        }
         velocity_verlet(atom, parameter);
+        //printf("Step %lu: Atom0 Pos = %f, Atom1 Pos = %f \n",
+        //       step, atom[0].atomPosition[0], atom[1].atomPosition[0]);
         printf("Step:%lu  ", step);
-        calculate_temperature(atom, parameter);
-        printf("Temperature:%f\n",parameter->currentTemperature);
-        write_file(atom,parameter,step);
+        //if (step % 5 == 0) {
+            calculate_temperature(atom, parameter);
+            printf("Temperature:%f\n",parameter->currentTemperature);
+ //           control_temperature(atom, parameter);
+        //}
+        
+           write_file(atom,parameter,step);
 
 
         //for(u4 atomId = 0; atomId < atom->atomId; atomId++) {
@@ -152,12 +179,7 @@ int main(void) {
 
     free(atom);
     return 0;
-
 }
-
-
-
-
 
 void initialize_atom(Atom *atom, Parameter *parameter) {
     u4 i = 0;
@@ -193,6 +215,7 @@ f8 calculation_minimam(f8 rij, f8 cellMax) {
     }
     return rij;
 }
+
 
 void calculation_force(Atom *atom, Parameter *parameter) {
     u4 i                    = 0; 
@@ -287,7 +310,10 @@ void velocity_verlet(Atom *atom, Parameter *parameter) {
         }
     }
 
+    /*ここら辺から速度スケーリング法適応したい． */
+    
 }
+
 
 void write_file(Atom *atom, Parameter *parameter, u4 step) {
     
@@ -320,8 +346,9 @@ void write_file(Atom *atom, Parameter *parameter, u4 step) {
 }
 
 void system_message(Parameter *parameter){
+    printf("MD-simulation ver4.1 温度制御を追加．\n");
     usleep(300000);
-    printf("検証中のため自動入力します.../n");
+    printf("検証効率化のため自動入力します...\n");
     usleep(300000);
     printf("\n");
     for(int i=0;i<10000;i++) {
@@ -329,6 +356,13 @@ void system_message(Parameter *parameter){
         usleep(100);
     }
     printf("\n");
+
+    printf("目標温度　　　　　:");
+    usleep(100000);
+    scanf("%lf", &(parameter->initialTemperature));
+    //printf("10\n");
+    //parameter->atomNum = 40;
+    usleep(100000);
 
 
     printf("原子数　　　　　:");
@@ -414,16 +448,31 @@ void calculate_temperature(Atom *atom, Parameter *parameter){
 
     for (i = 0; i < atomNum; i++) {
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
-            temporaryTemperature += atomVelocity[i * THREE_DIMENSION + dimension] * atomVelocity[i * THREE_DIMENSION + dimension];
+            temporaryTemperature += atomVelocity[i * THREE_DIMENSION + dimension] 
+                                    * atomVelocity[i * THREE_DIMENSION + dimension];
         }
     }
-    parameter->currentTemperature = temporaryTemperature * atomMass  / (3 * atomNum * boltzmannVal);
+    parameter->currentTemperature 
+                = temporaryTemperature * atomMass  / (3 * atomNum * boltzmannVal);
 }
 
-double rand_normal(double mean, double stddev) {
-    double u1 = ((double)rand() + 1.0) / ((double)RAND_MAX + 2.0);
-    double u2 = ((double)rand() + 1.0) / ((double)RAND_MAX + 2.0);
-    return mean + stddev * sqrt(-2.0 * log(u1)) * cos(2.0 * M_PI * u2);
+void control_temperature(Atom *atom, Parameter *parameter){
+    u4 i         = 0;
+    u4 dimension = 0;
+    f8 targetTemperature = parameter->initialTemperature;
+    f8 currentTemperature = parameter->currentTemperature;
+    f8 modifyTemperature  = sqrt(targetTemperature / currentTemperature);
+    for(i = 0; i < parameter->atomNum; i++) {
+        for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
+            atom->atomVelocity[i * THREE_DIMENSION + dimension] = 
+                atom->atomVelocity[i * THREE_DIMENSION + dimension] * modifyTemperature;
+        }
+    }
 }
+/*
+    temperatureCoefficient = initialTemperature / currentTemperature;
+    temperatureCoefficient *= temperatureCoefficient;
+*/
+
 
 

@@ -48,7 +48,6 @@ void control_temperature(Atom *atom, Parameter *parameter){
                 atom->atomVelocity[i * THREE_DIMENSION + dimension] * modifyTemperature;
         }
     }
-    printf("hello");
 }
 /*
     temperatureCoefficient = initialTemperature / currentTemperature;
