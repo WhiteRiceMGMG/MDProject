@@ -17,6 +17,7 @@
 #include "sysdef.h"
 #include "atom.h"
 #include "force.h"
+#include "temperature.h"
 
 void velocity_verlet(Atom *atom, Parameter *parameter);
 

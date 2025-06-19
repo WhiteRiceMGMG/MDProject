@@ -54,6 +54,9 @@ void velocity_verlet(Atom *atom, Parameter *parameter) {
         }
     }
 
+    /*ここら辺から速度スケーリング法適応したい． */
+    void control_temperature(Atom *atom, Parameter *parameter);
+    
 }
 
 
