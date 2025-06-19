@@ -15,13 +15,7 @@
 #include <unistd.h>
 #include <time.h>
 #include <math.h>
-#include "parameter.h"
-#include "atom.h"
-#include "force.h"
-#include "integrator.h"
-#include "sysmsg.h"
-#include "output.h"
-#include "temperature.h"
+
 
 
  #define THREE_DIMENSION 3
@@ -69,8 +63,9 @@ void velocity_verlet(Atom *atom, Parameter *parameter);
 void write_file(Atom *atom, Parameter *parameter, u4 step);
 void calculate_temperature(Atom *atom, Parameter *parameter);
 void control_temperature(Atom *atom, Parameter *parameter);
-f8 rand_normal(f8 mean, f8 stddev)
+f8 rand_normal(f8 mean, f8 stddev);
 f8 calculation_minimam(f8 rij, f8 cellMax);
+void system_message(Parameter *parameter);
 
 int main(void) {
     Parameter *parameter = (Parameter *)malloc(sizeof(Parameter));
@@ -474,5 +469,9 @@ void control_temperature(Atom *atom, Parameter *parameter){
     temperatureCoefficient *= temperatureCoefficient;
 */
 
-
+f8 rand_normal(f8 mean, f8 stddev) {
+    double u1 = ((double)rand() + 1.0) / ((double)RAND_MAX + 2.0);
+    double u2 = ((double)rand() + 1.0) / ((double)RAND_MAX + 2.0);
+    return mean + stddev * sqrt(-2.0 * log(u1)) * cos(2.0 * M_PI * u2);
+}
 
