@@ -45,6 +45,7 @@ void velocity_verlet(Atom *atom, Parameter *parameter) {
 
 
 
+    calculation_force(atom, parameter);
 
     for(i = 0; i < atomNum; i++) {
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
@@ -54,7 +55,6 @@ void velocity_verlet(Atom *atom, Parameter *parameter) {
     }
 
     /*ここら辺から速度スケーリング法適応したい． */
-    void control_temperature(Atom *atom, Parameter *parameter);
     
 }
 
