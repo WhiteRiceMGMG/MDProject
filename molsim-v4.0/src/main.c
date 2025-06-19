@@ -45,7 +45,7 @@ int main(void) {
     parameter->cellSize[2]        = 20;    /*Z方向のセルの長さ*/
     parameter->atomInterval       = 1;    /*初期原子間距離*/
     parameter->initialTemperature = 300;    /*初期温度*/
-    parameter->currentTemperature = 1;    /*現在の温度*/
+    parameter->currentTemperature = 0;    /*現在の温度*/
     parameter->boltzmannVal       = 1;    /*ボルツマン定数*/
 
     system_message(parameter);
@@ -114,6 +114,7 @@ int main(void) {
 
     for(u4 step = 0; step < parameter->simulationStep; step++) {
         if (step == 0) {
+            calculate_temperature(atom, parameter);
             control_temperature(atom, parameter);
         }
         velocity_verlet(atom, parameter);
