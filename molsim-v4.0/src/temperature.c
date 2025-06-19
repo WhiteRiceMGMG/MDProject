@@ -37,6 +37,16 @@ void calculate_temperature(Atom *atom, Parameter *parameter){
 }
 
 void control_temperature(Atom *atom, Parameter *parameter){
+    u4 i         = 0;
+    u4 dimension = 0;
+    f8 targetTemperature = parameter->initialTemperature;
+    f8 currentTemperature = parameter->currentTemperature;
+    for(i = 0; i < parameter->atomNum; i++) {
+        for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
+            atom->atomVelocity[i * THREE_DIMENSION + dimension] = 
+                atom->atomVelocity[i * THREE_DIMENSION + dimension] * sqrt(targetTemperature / currentTemperature);
+        }
+    }
     printf("hello");
 }
 /*
