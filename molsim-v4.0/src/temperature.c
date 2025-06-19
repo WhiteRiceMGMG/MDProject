@@ -11,7 +11,7 @@
  *  　　　　　　　　　最終編集 2025/6/8
  *****************************************************************/
 #include "temperature.h"
-
+#include <math.h>
 #define THREE_DIMENSION 3
 
 void calculate_temperature(Atom *atom, Parameter *parameter){
@@ -41,10 +41,11 @@ void control_temperature(Atom *atom, Parameter *parameter){
     u4 dimension = 0;
     f8 targetTemperature = parameter->initialTemperature;
     f8 currentTemperature = parameter->currentTemperature;
+    f8 modifyTemperature  = sqrt(targetTemperature / currentTemperature);
     for(i = 0; i < parameter->atomNum; i++) {
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
             atom->atomVelocity[i * THREE_DIMENSION + dimension] = 
-                atom->atomVelocity[i * THREE_DIMENSION + dimension] * sqrt(targetTemperature / currentTemperature);
+                atom->atomVelocity[i * THREE_DIMENSION + dimension] * modifyTemperature;
         }
     }
     printf("hello");
