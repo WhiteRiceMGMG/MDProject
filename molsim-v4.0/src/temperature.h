@@ -23,6 +23,7 @@
 #include "atom.h"
 
 void calculate_temperature(Atom *atom, Parameter *parameter);
+void control_temperature(Atom *atom, Parameter *parameter);
 
 
 #endif
