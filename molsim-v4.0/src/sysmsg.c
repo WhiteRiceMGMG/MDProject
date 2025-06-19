@@ -12,8 +12,9 @@
 #include "sysmsg.h"
 
 void system_message(Parameter *parameter){
+    printf("MD-simulation ver4.1 温度制御を追加．\n");
     usleep(300000);
-    printf("検証中のため自動入力します.../n");
+    printf("検証効率化のため自動入力します...\n");
     usleep(300000);
     printf("\n");
     for(int i=0;i<10000;i++) {
@@ -21,6 +22,13 @@ void system_message(Parameter *parameter){
         usleep(100);
     }
     printf("\n");
+
+    printf("目標温度　　　　　:");
+    usleep(100000);
+    scanf("%lf", &(parameter->initialTemperature));
+    //printf("10\n");
+    //parameter->atomNum = 40;
+    usleep(100000);
 
 
     printf("原子数　　　　　:");
