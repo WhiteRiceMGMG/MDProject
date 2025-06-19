@@ -120,6 +120,7 @@ int main(void) {
         //if (step % 5 == 0) {
             calculate_temperature(atom, parameter);
             printf("Temperature:%f\n",parameter->currentTemperature);
+            control_temperature(atom, parameter);
         //}
         
            write_file(atom,parameter,step);
