@@ -9,3 +9,13 @@
  *  Note         : 
  *  History      : 2025/06/08 - ファイル作成
  *****************************************************************/
+#ifndef INITIALATOM_H
+#define INITIALATOM_H
+#include <stdio.h>
+#include "atom.h"
+#include "parameter.h"
+
+void initial_atom_position(Atom *atom, Parameter *parameter);
+
+
+#endif
