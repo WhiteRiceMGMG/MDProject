@@ -6,7 +6,7 @@ gccを用いてビルドし，簡単に実行できます．
 
 ```bash
 git clone https://github.com/WhiteRiceMGMG/MDProject.git
-cd MDProject/molsim-v4.0
+cd MDProject/molsim-v5.0
 make
 ./main
 ```
@@ -23,6 +23,8 @@ make
 2025/6/15 温度の概念を追加 <br>
 2025/6/15 温度制御を追加<br>
 2025/6/19 温度制御を改善<br>
+
+
 
 ## 境界条件についての詳細
 現在の原子位置がボックスサイズ外にいった時，ボックスサイズを原子位置自身に加減算する．<br>
