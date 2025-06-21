@@ -11,4 +11,19 @@
  *****************************************************************/
 #include "initialAtom.h"
 
-void initial_atom_position_lattice(Atom *atom, Parameter *parameter);
+void initial_atom_position_lattice(Atom *atom, Parameter *parameter) {
+    u4 i = 0;
+    u4 j = 0;
+    u4 k = 0;
+    f8 latticeLength = 10;
+
+    for(i = 0; i < latticeLength; i++) {
+        for(j = 0; j < latticeLength; j++) {
+            for(k = 0; k < latticeLength; k++) {
+                
+            }
+        }
+    }
+
+
+}
