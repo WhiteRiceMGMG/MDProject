@@ -15,7 +15,7 @@
 #include "atom.h"
 #include "parameter.h"
 
-void initial_atom_position(Atom *atom, Parameter *parameter);
+void initial_atom_position_lattice(Atom *atom, Parameter *parameter);
 
 
 #endif

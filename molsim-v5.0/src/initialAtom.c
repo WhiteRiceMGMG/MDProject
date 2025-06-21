@@ -9,3 +9,6 @@
  *  Note         : 
  *  History      : 2025/06/08 - ファイル作成
  *****************************************************************/
+#include "initialAtom.h"
+
+void initial_atom_position_lattice(Atom *atom, Parameter *parameter);
