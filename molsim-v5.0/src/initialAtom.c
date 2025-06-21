@@ -20,7 +20,8 @@ void initial_atom_position_lattice(Atom *atom, Parameter *parameter) {
     for(i = 0; i < latticeLength; i++) {
         for(j = 0; j < latticeLength; j++) {
             for(k = 0; k < latticeLength; k++) {
-                
+                //ここで分子の初期配置をする，なんかアイデアないかな．ちょっと難しいンゴね
+
             }
         }
     }
