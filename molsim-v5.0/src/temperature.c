@@ -19,13 +19,13 @@ void calculate_temperature(Atom *atom, Parameter *parameter){
     u4 atomNum                = parameter->atomNum;
     f8 atomMass               = parameter->atomMass;
     f8 boltzmannVal           = parameter->boltzmannVal;
-    f8 currentTemperature     = parameter->currentTemperature;
-    f8 initialTemperature     = parameter->initialTemperature;
+    //f8 currentTemperature     = parameter->currentTemperature;
+    //f8 initialTemperature     = parameter->initialTemperature;
     u4 dimension              = 0;
     f8 temporaryTemperature   = 0;
     u4 i                      = 0;
-    f8 temperatureCoefficient = 0;
-
+    //f8 temperatureCoefficient = 0;
+    #pragma omp parallel for
     for (i = 0; i < atomNum; i++) {
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
             temporaryTemperature += atomVelocity[i * THREE_DIMENSION + dimension] 
@@ -42,6 +42,7 @@ void control_temperature(Atom *atom, Parameter *parameter){
     f8 targetTemperature = parameter->initialTemperature;
     f8 currentTemperature = parameter->currentTemperature;
     f8 modifyTemperature  = sqrt(targetTemperature / currentTemperature);
+    #pragma omp parallel for
     for(i = 0; i < parameter->atomNum; i++) {
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
             atom->atomVelocity[i * THREE_DIMENSION + dimension] = 

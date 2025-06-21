@@ -19,6 +19,7 @@
 void initialize_atom(Atom *atom, Parameter *parameter) {
     u4 i = 0;
     u1 dimension = 0;
+    #pragma omp parallel for
     for (i = 0; i < parameter->atomNum; i++) {
         (atom + i) -> atomId = i;
         for(dimension = 0; dimension < THREE_DIMENSION; dimension++) {
