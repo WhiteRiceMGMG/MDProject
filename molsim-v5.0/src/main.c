@@ -77,6 +77,7 @@ int main(void) {
             atom[i].atomVelocity[d] -= vcm[d]; 
         }
     }    
+/*
 //-----------------------------------------------------------
     // ランダム配置（最小距離を考慮）
     double minDistance = 1.0; // 原子間の最小距離
@@ -103,7 +104,7 @@ int main(void) {
             }
         }
     }
-
+*/
 /*
     atom[0].atomPosition[0] = 0.0;
     atom[1].atomPosition[0] = 9.0;
