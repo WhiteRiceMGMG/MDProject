@@ -29,6 +29,6 @@ void initial_atom_position_lattice(Atom *atom, Parameter *parameter) {
             }
         }
     }
-
+*(atom->atomPosition + 0) = i * latticeLength;
 
 }
