@@ -1,0 +1,8 @@
+share list 
+1. Mac 
+2. Vaio 
+3. Vail VGN
+4. raspberry-pi 
+
+
+
