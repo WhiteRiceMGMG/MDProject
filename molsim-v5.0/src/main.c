@@ -81,39 +81,6 @@ int main(void) {
             atom[i].atomVelocity[d] -= vcm[d]; 
         }
     }    
-/*
-//-----------------------------------------------------------
-    // ランダム配置（最小距離を考慮）
-    double minDistance = 1.0; // 原子間の最小距離
-    srand(time(NULL)); // ランダムシードを設定
-
-    for (u4 i = 0; i < parameter->atomNum; i++) {
-        int valid = 0;
-        while (!valid) {
-            valid = 1; // 配置が有効か仮定
-            for (u4 dimension = 0; dimension < 3; dimension++) {
-                atom[i].atomPosition[dimension] =
-                    ((double)rand() / RAND_MAX) * parameter->cellSize[dimension];
-            }
-            for (u4 j = 0; j < i; j++) {
-                double distanceSquared = 0.0;
-                for (u4 dimension = 0; dimension < 3; dimension++) {
-                    double diff = atom[i].atomPosition[dimension] - atom[j].atomPosition[dimension];
-                    distanceSquared += diff * diff;
-                }
-                if (sqrt(distanceSquared) < minDistance) {
-                    valid = 0; // 配置をやり直す
-                    break;
-                }
-            }
-        }
-    }
-*/
-/*
-    atom[0].atomPosition[0] = 0.0;
-    atom[1].atomPosition[0] = 9.0;
-    atom[2].atomPosition[0] = 5.0;
-*/
 
     calculation_force(atom, parameter);
 
