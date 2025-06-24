@@ -26,7 +26,7 @@ void initial_atom_position_lattice(Atom *atom, Parameter *parameter) {
                 *(atom->atomPosition + 1) = j * atomBetween;
                 *(atom->atomPosition + 2) = k * atomBetween;
                 atom++;
-                
+                parameter->atomNum++;
             }
         }
     }

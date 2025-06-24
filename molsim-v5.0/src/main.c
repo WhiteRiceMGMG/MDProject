@@ -49,7 +49,6 @@ int main(void) {
     parameter->boltzmannVal       = 1;    /*ボルツマン定数*/
 
     system_message(parameter);
-    
 
     Atom *atom = (Atom *)malloc(sizeof(Atom) * parameter->atomNum);
     initialize_atom(atom, parameter);
