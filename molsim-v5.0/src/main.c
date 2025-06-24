@@ -22,6 +22,7 @@
 #include "sysmsg.h"
 #include "output.h"
 #include "temperature.h"
+#include "initialAtom.h"
 
 // 標準正規分布を生成する関数（Box-Muller法）
 double rand_normal(double mean, double stddev) {
@@ -33,7 +34,7 @@ double rand_normal(double mean, double stddev) {
 int main(void) {
     Parameter *parameter = (Parameter *)malloc(sizeof(Parameter));
     
-    parameter->atomNum            = 100;    /*原子の数*/
+    parameter->atomNum            = 30;    /*原子の数*/
     parameter->simulationStep     = 100;    /*シミュレーションステップ*/
     parameter->timeStep           = 0.1;    /*1ステップあたりの時間*/
     parameter->epsilonVal         = 1.0;  /*原子間の引力*/

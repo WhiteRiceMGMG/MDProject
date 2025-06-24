@@ -30,7 +30,8 @@ void initial_atom_position_lattice(Atom *atom, Parameter *parameter) {
                 atomCount++;
                 //parameter->atomNum++;
                 //アトムの数が規定値に達したら配置やめる．　，
-                if(atomCount < parameter->atomNum) {
+                if(atomCount >= parameter->atomNum) {
+                    printf("atomCount : %lu\n",atomCount);
                     return;
                 }
             }
