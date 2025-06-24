@@ -50,9 +50,13 @@ int main(void) {
 
     system_message(parameter);
 
+
+
     Atom *atom = (Atom *)malloc(sizeof(Atom) * parameter->atomNum);
+
     initialize_atom(atom, parameter);
-//-----------------------------------------------------------
+    initial_atom_position_lattice(atom, parameter);
+    //-----------------------------------------------------------
     double kT_over_m = parameter->boltzmannVal * parameter->initialTemperature / parameter->atomMass;
     double stddev = sqrt(kT_over_m); 
 

@@ -17,6 +17,7 @@ void initial_atom_position_lattice(Atom *atom, Parameter *parameter) {
     u4 k             = 0;
     f8 latticeLength = 15;
     f8 atomBetween   = 3;
+    u4 atomCount     = 0;
 
     for(i = 0; i < latticeLength; i++) {
         for(j = 0; j < latticeLength; j++) {
@@ -26,8 +27,12 @@ void initial_atom_position_lattice(Atom *atom, Parameter *parameter) {
                 *(atom->atomPosition + 1) = j * atomBetween;
                 *(atom->atomPosition + 2) = k * atomBetween;
                 atom++;
+                atomCount++;
                 //parameter->atomNum++;
                 //アトムの数が規定値に達したら配置やめる．　，
+                if(atomCount < parameter->atomNum) {
+                    return;
+                }
             }
         }
     }
