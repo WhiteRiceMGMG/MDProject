@@ -30,13 +30,19 @@ void system_message(Parameter *parameter){
     //parameter->atomNum = 40;
     usleep(100000);
 
-
+    printf("原子の初期配置をします，\n");
+    printf("原子間隔:");
+    usleep(100000);
+    printf("3");
+    usleep(100000);
+/*
     printf("原子数　　　　　:");
     usleep(100000);
     //scanf("%lu", &(parameter->atomNum));
     printf("10\n");
     parameter->atomNum = 40;
     usleep(100000);
+*/
 
     printf("ステップ　　　　:");
     usleep(100000);
