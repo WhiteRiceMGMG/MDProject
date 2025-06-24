@@ -15,17 +15,18 @@ void initial_atom_position_lattice(Atom *atom, Parameter *parameter) {
     u4 i             = 0;
     u4 j             = 0;
     u4 k             = 0;
-    f8 latticeLength = 10;
-    f8 atomBetween   = 0;
+    f8 latticeLength = 15;
+    f8 atomBetween   = 3;
 
     for(i = 0; i < latticeLength; i++) {
         for(j = 0; j < latticeLength; j++) {
             for(k = 0; k < latticeLength; k++) {
                 //ここで分子の初期配置をする，なんかアイデアないかな．ちょっと難しいンゴね
-                *(atom->atomPosition + 0) = i * latticeLength;
-                *(atom->atomPosition + 1) = j * latticeLength;
-                *(atom->atomPosition + 2) = k * latticeLength;
-                 
+                *(atom->atomPosition + 0) = i * atomBetween;
+                *(atom->atomPosition + 1) = j * atomBetween;
+                *(atom->atomPosition + 2) = k * atomBetween;
+                atom++;
+                
             }
         }
     }
