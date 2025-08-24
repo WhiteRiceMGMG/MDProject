@@ -1,6 +1,6 @@
 /*****************************************************************
- *  Filename     : main.c
- *  Description  : main.c
+ *  Filename     : includes.h
+ *  Description  : includes file
  *  Author       : Ogawa <ocmikanmgmg@gmail.com>
  *  Created      : Aug 24, 2025
  *  Compiler     : gcc
@@ -10,7 +10,9 @@
  *  History      : 2025/08/24 - ファイル作成
  *  最終編集 2025/08/24
  *****************************************************************/
+ #ifndef INCLUDES_H
+ #define INCLUDES_H
 
- #include <../includes/includes.h>
-
-
+#include <stdio.h>
+#include "sysdef.h"
+#include "parameter.h"
