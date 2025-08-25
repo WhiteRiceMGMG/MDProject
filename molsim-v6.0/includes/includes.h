@@ -16,4 +16,7 @@
 #include <stdio.h>
 #include "sysdef.h"
 #include "parameter.h"
+#include "atom.h"
+#include "boundary.h"
+#
 #endif
