@@ -1,6 +1,6 @@
 /*****************************************************************
- *  Filename     : boundary.h
- *  Description  : boudry  file
+ *  Filename     : force.h
+ *  Description  : force  file
  *  Author       : Ogawa <ocmikanmgmg@gmail.com>
  *  Created      : Aug 25, 2025
  *  Compiler     : gcc
@@ -10,12 +10,13 @@
  *  History      : 2025/08/25 - ファイル作成
  *  最終編集 2025/08/25
  *****************************************************************/
-#include "includes.h"
-#ifndef BOUNDARY_H
-#define BOUNDARY_H
+#ifndef FORCE_H
+#define FORCE_H
 
-f8 apply_period(f8 pos, Parameter *param, f8 celMax);
-f8 calculation_minimam(f8 rij, f8 celMax);
+#include "includes.h"
+
+void calculation_force(Atom *atom, Parameter *parameter);
 
 #endif
+
 
