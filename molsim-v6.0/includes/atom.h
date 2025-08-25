@@ -23,6 +23,6 @@
     f8 atmFoc[3];
  } Atom;
 
- void initialize_atom(Atom  *atom, Parameter *parameter);
+ void initialize_atom(Atom  *atom, Parameter *param);
 
  #endif
